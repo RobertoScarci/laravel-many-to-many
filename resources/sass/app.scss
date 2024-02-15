@@ -1,0 +1,18 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+.carousel-item button{
+    font-size: 30px;
+}
+
+.carousel-item img{
+    opacity: .7;
+}
+
+
