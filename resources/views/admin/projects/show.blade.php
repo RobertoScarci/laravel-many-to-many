@@ -15,12 +15,18 @@
     <div class="card-body ">
       <h2 class="card-title">Project's Name: {{ $project->title }}</h2>
       <h4><span>Type: </span> {{ $project->type->name }} </h4>
+      <p class="card-text">
+        <div class="fw-bold mb-1">Technologies:</div> 
+        @foreach ($project->technologies as $technology)
+            <span class="me-2 py-2 px-3 fs-7 badge text-bg-primary"> <img src="{{ $technology->img_url }}"> {{ $technology->name }}</span>
+        @endforeach
+      </p>
       <h6>Author: {{ $project->author }}</h6>
       <p class="card-text">Content: {{ $project->content }}</p>
       <p>
         Date: {{ $project->date }}
       </p>
-      <a href="#" class="btn btn-primary">Edit</a>
+      <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-primary">Edit</a>
     </div>
   </div>
 </div>

@@ -12,15 +12,15 @@
             </div>
             <form class="row g-3" action="{{ route('admin.projects.store') }}" method="POST">
                 @csrf
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="title" class="form-label">Project Name</label>
                     <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $project->title) }}">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="author" class="form-label">Author</label>
                     <input type="text" class="form-control" id="author" name="author" value="{{ old('author', $project->author) }}">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="type_id" class="form-label">Type</label>
                     <select class="form-select @error('type_id') is-invalid @enderror" id="type_id" name="type_id">
                         <option>Choose one type</option>
@@ -28,6 +28,18 @@
                             <option value="{{ $type->id }}" @selected(old('type_id', $project->type_id) == $type->id )>{{ $type->name }}</option>
                         @endforeach
                     </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="d-block pb-2">Technologies</label>
+                    @foreach ($technologies as $technology)
+                    <div class="form-check-inline pt-2">
+                        <input class="form-check-input" type="checkbox" name="technologies[]" value="{{ $technology->id }}" id="check-{{ $technology->id }}"
+                        @checked(in_array( $technology->id, old('technologies', $project->technologies->pluck('id')->toArray())))>
+                        <label class="form-check-label" for="check-{{ $technology->id }}">
+                            {{ $technology->name }}
+                        </label>
+                    </div>
+                    @endforeach
                 </div>
                 <div class="col-md-6">
                     <label for="date" class="form-label">Date</label>

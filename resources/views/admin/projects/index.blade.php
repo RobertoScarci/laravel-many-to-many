@@ -17,6 +17,7 @@
                         <tr>
                             <th scope="col">Author</th>
                             <th scope="col">Project Title</th>
+                            <th scope="col">Technology</th>
                             <th scope="col">Content</th>
                             <th scope="col">Date</th>
                             <th></th>
@@ -27,6 +28,11 @@
                             <tr>
                                 <th scope="row">{{ $project->author }}</th>
                                 <td>{{ $project->title }}</td>
+                                <td>
+                                    @foreach ($project->technologies as $technology)
+                                        <span class="badge text-bg-primary py-1 px-2">{{ $technology->name }}</span>
+                                    @endforeach
+                                </td>
                                 <td>Premi su Load More per saperne di più sul contenuto di questo progetto</td>
                                 <td>{{ $project->date }}</td>
                                 <td>
